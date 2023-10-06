@@ -17,6 +17,8 @@
 #ifndef _GCVT_H
 #define _GCVT_H
 
+#include <stdint.h>
+
 int _gfcvt_s(
     char* buffer,
     size_t buffer_size,

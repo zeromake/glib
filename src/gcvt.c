@@ -16,7 +16,6 @@
   
 // fork from glib/gnulib/vasnprintf.c
 
-#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>

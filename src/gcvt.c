@@ -941,10 +941,14 @@ int _gecvt_s(
   char *digits = NULL;
   size_t ndigits = 0;
   int exponent = floorlog10(value);
-  int precision = p_ndigit;
+  int precision = p_ndigit-1;
+  if (precision < 0) {
+    precision = 0;
+  }
   int adjusted = 0;
   for (;;) {
-    digits = scale10_round_decimal_double(value, precision - exponent);
+    int n = precision - exponent;
+    digits = scale10_round_decimal_double(value, n);
     if (digits == NULL) {
       return -1;
     }

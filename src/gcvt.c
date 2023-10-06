@@ -29,7 +29,21 @@
 #define IF_LINT(Code) /* empty */
 #endif
 
+#ifdef __GNUC__
+#define G_GNUC_CHECK_VERSION(major, minor) \
+    ((__GNUC__ > (major)) || \
+     ((__GNUC__ == (major)) && \
+      (__GNUC_MINOR__ >= (minor))))
+#else
+#define G_GNUC_CHECK_VERSION(major, minor) 0
+#endif
+
+#if G_GNUC_CHECK_VERSION(2, 8)
 #define G_GNUC_EXTENSION __extension__
+#else
+#define G_GNUC_EXTENSION
+#endif
+
 #define G_GUINT64_CONSTANT(val)	(G_GNUC_EXTENSION (val##ULL))
 #define G_MAXUINT64	G_GUINT64_CONSTANT(0xffffffffffffffff)
 #define G_MAXSIZE	G_MAXUINT64
